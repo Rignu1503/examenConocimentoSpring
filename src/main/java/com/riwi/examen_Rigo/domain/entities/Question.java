@@ -3,9 +3,13 @@ package com.riwi.examen_Rigo.domain.entities;
 
 import java.util.List;
 
+import com.riwi.examen_Rigo.util.enums.QuestionsOption;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -31,8 +35,9 @@ public class Question {
     @Column(columnDefinition = "TEXT")
     private String text;
 
-    @Column(nullable = false, length = 50)
-    private String type;
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private QuestionsOption type;
 
     @ManyToOne
     @JoinColumn(name = "survey_id", nullable = false)

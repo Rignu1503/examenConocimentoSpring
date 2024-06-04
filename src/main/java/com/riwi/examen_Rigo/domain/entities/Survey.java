@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -23,7 +24,7 @@ public class Survey {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @Column(nullable = false, length = 255)
     private String title;
@@ -34,8 +35,11 @@ public class Survey {
     @Column(nullable = false)
     private LocalDateTime creationDate;
 
-    @ManyToOne
-    @JoinColumn(name = "creator_id", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(
+        name = "creator_id",
+        referencedColumnName = "id"
+    )
     private User creator;
 
     @Column(nullable = false)
