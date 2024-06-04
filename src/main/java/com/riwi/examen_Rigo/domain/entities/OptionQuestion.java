@@ -2,6 +2,7 @@ package com.riwi.examen_Rigo.domain.entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -22,15 +23,19 @@ public class OptionQuestion {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @Column(columnDefinition = "TEXT")
     private String text;
 
-    @ManyToOne
-    @JoinColumn(name = "question_id", nullable = false)
-    private Question question;
-
     @Column(nullable = false)
     private Boolean active;
+
+
+@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "question_id",
+     referencedColumnName = "id")
+    private Question question;
+
+    
 }

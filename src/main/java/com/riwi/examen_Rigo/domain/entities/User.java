@@ -13,7 +13,9 @@ import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity(name = "user")
 @Data
@@ -38,9 +40,11 @@ public class User {
     @Column(nullable = false)
     private Boolean active;
 
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     @OneToMany(
         mappedBy = "creator",
-        fetch = FetchType.EAGER,
+        fetch = FetchType.LAZY,
         cascade = CascadeType.ALL,
         orphanRemoval = false
     )
