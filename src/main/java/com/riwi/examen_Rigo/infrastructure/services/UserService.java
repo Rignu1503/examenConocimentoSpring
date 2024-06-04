@@ -2,7 +2,6 @@ package com.riwi.examen_Rigo.infrastructure.services;
 
 import java.util.ArrayList;
 
-import org.apache.coyote.BadRequestException;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
